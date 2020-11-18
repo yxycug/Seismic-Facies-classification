@@ -6,8 +6,8 @@ def seispatch_2d(section,patch_size,os_x=0,os_y=0,visualization=False,colors="Da
     section :the 2-D seismic data
     patch_size :the size of patches
     os_x/_y: the length of overlap 
-    show: 1:visualization
-    colors：if show==True; label:"Dark2"; seismic:"seismic" or "Greys"
+    visualization: visualize the patch
+    colors：if visualization==True; label:"Dark2"; seismic:"seismic" or "Greys"
     '''
     
     m1,m2 = section.shape                            
