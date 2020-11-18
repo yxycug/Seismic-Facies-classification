@@ -1,7 +1,7 @@
 #This code used to generate the training data from the 3d dataset
-#JUST FOR AN EXAMPLE AND NO DATA AUGMENTATION
+#MESSY, JUST FOR AN EXAMPLE AND NO DATA AUGMENTATION
 
-def seispatch_2d(section,patch_size,os_x=0,os_y=0,show=False,colors="Dark2"):
+def seispatch_2d(section,patch_size,os_x=0,os_y=0,visualization=False,colors="Dark2"):
     '''
     section :the 2-D seismic data
     patch_size :the size of patches
@@ -30,10 +30,13 @@ def seispatch_2d(section,patch_size,os_x=0,os_y=0,show=False,colors="Dark2"):
             img_patch=img_pad[b1:e1,b2:e2]
             result[i,]=img_patch
             i+=1
-            if show:
+            if visualization:
                 import matplotlib.pyplot as plt
                 plt.subplot(c1,c2,i)
-                imgplot1 = plt.imshow(img_patch,cmap=colors,interpolation='nearest')            
+                imgplot1 = plt.imshow(img_patch,cmap=colors,interpolation='nearest')
+                plt.xticks([])
+                plt.yticks([])
+                plt.tight_layout()
     return result
 
 def extract_2d_from_3d(seismic_3d,axis=0,patch_size=128,os_x=0,os_y=0):
@@ -50,5 +53,5 @@ def extract_2d_from_3d(seismic_3d,axis=0,patch_size=128,os_x=0,os_y=0):
     return c
     
 if __name__ == "__main__":
-    sei_patch = extract_2d_from_3d(train_seismic,patch_size=256,os_x=128,os_y=0)
-    lab_patch = extract_2d_from_3d(train_labels,patch_size=256,os_x=128,os_y=0)
+    sei_patch = extract_2d_from_3d(train_seismic,patch_size=256,os_x=128)
+    lab_patch = extract_2d_from_3d(train_labels,patch_size=256,os_x=128)
